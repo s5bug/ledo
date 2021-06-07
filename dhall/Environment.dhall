@@ -1,9 +1,8 @@
+let Identifier = ./Identifier.dhall
+let Map = https://prelude.dhall-lang.org/Map/Type
+
 let Environment : Type =
-  ∀(Package : Type) →
-  ∀(Build : Type) →
-  ∀(Environment : Type) →
-  ∀(MakePackage : ./MakePackage.dhall Package Build Environment) →
-  ∀(MakeBuild : ./MakeBuild.dhall Package Build Environment) →
-  ∀(MakeEnvironment : ./MakeEnvironment.dhall Package Build Environment) →
-    Environment
+  { packages : List Identifier
+  , variables : Map Text Text
+  }
 in Environment

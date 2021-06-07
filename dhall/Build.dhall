@@ -1,9 +1,7 @@
+let Environment = ./Environment.dhall
+
 let Build : Type =
-  ∀(Package : Type) →
-  ∀(Build : Type) →
-  ∀(Environment : Type) →
-  ∀(MakePackage : ./MakePackage.dhall Package Build Environment) →
-  ∀(MakeBuild : ./MakeBuild.dhall Package Build Environment) →
-  ∀(MakeEnvironment : ./MakeEnvironment.dhall Package Build Environment) →
-    Build
+  { makeEnvironment : Environment
+  , commands : List Text
+  }
 in Build

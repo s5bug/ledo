@@ -1,6 +1,9 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,scala,sbt
-# Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,scala,sbt
+# Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,metals,scala,sbt,visualstudiocode,bloop
+# Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,metals,scala,sbt,visualstudiocode,bloop
+
+### Bloop ###
+.bloop/
 
 ### JetBrains+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -91,6 +94,10 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
+### Metals ###
+.metals/
+project/**/metals.sbt
+
 ### SBT ###
 # Simple Build Tool
 # http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
@@ -110,4 +117,12 @@ project/plugins/project/
 *.class
 *.log
 
-# End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,scala,sbt
+### VisualStudioCode ###
+.vscode/*
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,metals,scala,sbt,visualstudiocode,bloop

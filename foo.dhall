@@ -1,20 +1,37 @@
 let Package = ./dhall/Package.dhall
+let Identifier = ./dhall/Identifier.dhall
+let Map = https://prelude.dhall-lang.org/Map/Type
+
+let bar : Identifier =
+  { organization = "tf.bug"
+  , name = "bar"
+  , version = "1.0.0"
+  }
+
+let baz : Identifier =
+  { organization = "tf.bug"
+  , name = "baz"
+  , version = "1.0.0"
+  }
 
 let foo : Package =
-  λ(Package : Type) →
-  λ(Build : Type) →
-  λ(Environment : Type) →
-  λ(MakePackage : ./dhall/MakePackage.dhall Package Build Environment) →
-  λ(MakeBuild : ./dhall/MakeBuild.dhall Package Build Environment) →
-  λ(MakeEnvironment : ./dhall/MakeEnvironment.dhall Package Build Environment) →
-    MakePackage
-      { name = "foo"
-      , resources = [] : List Text
-      , setup = [] : List Text
-      , build = MakeBuild
-        { makeDependencies = MakeEnvironment { env = [ ./bar.dhall Package Build Environment MakePackage MakeBuild MakeEnvironment, ./baz.dhall Package Build Environment MakePackage MakeBuild MakeEnvironment ] }
-        , dependencies = MakeEnvironment { env = [ ./bar.dhall Package Build Environment MakePackage MakeBuild MakeEnvironment ] }
-        , build = [] : List Text
-        }
+  { identifier =
+    { organization = "tf.bug"
+    , name = "foo"
+    , version = "1.0.0"
+    }
+  , resources = [] : List Text
+  , setup = [] : List Text
+  , build =
+    { makeEnvironment =
+      { packages = [bar, baz]
+      , variables = [] : Map Text Text
       }
+    , commands = [] : List Text
+    }
+  , useEnvironment =
+    { packages = [bar]
+    , variables = [] : Map Text Text
+    }
+  }
 in foo

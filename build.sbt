@@ -13,7 +13,17 @@ lazy val core = project
       "org.dhallj" % "dhall-core" % "0.9.0-M2",
       "org.dhallj" %% "dhall-scala" % "0.9.0-M2",
       "org.dhallj" %% "dhall-imports" % "0.9.0-M2",
+      "org.http4s" %% "http4s-jdk-http-client" % "0.5.0-RC1",
     ),
     Compile / mainClass := Some("tf.bug.ledo.Main"),
+    nativeImageOptions := Seq(
+      "--allow-incomplete-classpath",
+      "--no-fallback",
+      "--initialize-at-build-time=scala",
+      "--enable-http",
+      "--enable-https",
+      "--enable-all-security-services",
+      "-H:+ReportExceptionStackTraces",
+    ),
   )
   .enablePlugins(NativeImagePlugin)

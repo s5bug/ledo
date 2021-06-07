@@ -1,9 +1,12 @@
+let Identifier : Type = ./Identifier.dhall
+let Build : Type = ./Build.dhall
+let Environment : Type = ./Environment.dhall
+
 let Package : Type =
-  ∀(Package : Type) →
-  ∀(Build : Type) →
-  ∀(Environment : Type) →
-  ∀(MakePackage : ./MakePackage.dhall Package Build Environment) →
-  ∀(MakeBuild : ./MakeBuild.dhall Package Build Environment) →
-  ∀(MakeEnvironment : ./MakeEnvironment.dhall Package Build Environment) →
-    Package
+  { identifier : Identifier
+  , resources : List Text
+  , setup : List Text
+  , build : Build
+  , useEnvironment : Environment
+  }
 in Package
